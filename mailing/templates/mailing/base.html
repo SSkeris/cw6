@@ -8,44 +8,47 @@
 
 
 <header data-bs-theme="dark">
-  <div class="collapse text-bg-dark" id="navbarHeader">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-          <h4>Рассылки</h4>
-          <p class="text-body-secondary">Проект создан с целью обучения. На данном сайте можно сконструировать свою рассылку, использовать уже имеющиеся из списка, создавать тексты рассылок, редактировать их, так же добавлять клиентов для рассылок и редактировать их.</p>
+    <div class="collapse text-bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4>Рассылки</h4>
+                    <p class="text-body-secondary">Проект создан с целью обучения. На данном сайте можно сконструировать
+                        свою рассылку, использовать уже имеющиеся из списка, создавать тексты рассылок, редактировать
+                        их, так же добавлять клиентов для рассылок и редактировать их.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4>навигация</h4>
+                    <ul class="list-unstyled">
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Рассылки</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing_form' %}">Создать рассылку</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'clients_list' %}">Клиенты</a></li>
+                        <li><a class="py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'clients_form' %}">Создать клиента</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'message_list' %}">Сообщения</a></li>
+                        <li><a class="py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'message_form' %}">Создать сообщение</a></li>
+                        <li><a class="py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'log_list' %}">История рассылок</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-          <h4>навигация</h4>
-          <ul class="list-unstyled">
-            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Рассылки</a></li>
-            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'mailing_form' %}">Создать рассылку</a></li>
-            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'clients_list' %}">Клиенты</a></li>
-            <li><a class="py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'clients_form' %}">Создать клиента</a></li>
-            <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'message_list' %}">Сообщения</a></li>
-            <li><a class="py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'message_form' %}">Создать сообщение</a></li>
-            <li><a class="py-2 link-body-emphasis text-decoration-none"
-                   href="{% url 'log_list' %}">История рассылок</a></li>
-          </ul>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>mailing project</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a href="#" class="navbar-brand d-flex align-items-center">
-        <strong>mailing project</strong>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </div>
 </header>
 <body>
 
@@ -109,36 +112,6 @@
         <div class="row">
             <div class="col-12 col-md">
                 <small class="d-block mb-3 text-body-secondary">&copy; 2024</small>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Features</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a>
-                    </li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5>About</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
-                </ul>
             </div>
         </div>
     </footer>
