@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mailing',
     'django_apscheduler',
     'blog',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -133,11 +134,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# AUTH_USER_MODEL = 'users.User'
-# LOGIN_URL = '/users/login'
-#
-# LOGIN_REDIRECT_URL = '/'
-# LOGOUT_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/users/login'
+
+LOGIN_REDIRECT_URL = '/mailing'
+LOGOUT_REDIRECT_URL = '/mailing'
 
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')

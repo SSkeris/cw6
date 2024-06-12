@@ -20,19 +20,33 @@
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4>навигация</h4>
                     <ul class="list-unstyled">
-                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/">Рассылки</a></li>
+                        {% if user.is_authenticated %}
                         <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'mailing_form' %}">Создать рассылку</a></li>
+                               href="{% url 'users:profile' %}">Профиль</a></li>
                         <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'clients_list' %}">Клиенты</a></li>
-                        <li><a class="py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'clients_form' %}">Создать клиента</a></li>
+                               href="{% url 'users:view_all_users' %}">Список пользователей</a></li>
                         <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'message_list' %}">Сообщения</a></li>
+                               href="{% url 'users:logout' %}">Выход</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing:mailing_list' %}">Рассылки</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing:mailing_form' %}">Создать рассылку</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing:clients_list' %}">Клиенты</a></li>
                         <li><a class="py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'message_form' %}">Создать сообщение</a></li>
+                               href="{% url 'mailing:clients_form' %}">Создать клиента</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing:message_list' %}">Сообщения</a></li>
                         <li><a class="py-2 link-body-emphasis text-decoration-none"
-                               href="{% url 'log_list' %}">История рассылок</a></li>
+                               href="{% url 'mailing:message_form' %}">Создать сообщение</a></li>
+                        <li><a class="py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'mailing:log_list' %}">История рассылок</a></li>
+                        {% else %}
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'users:login' %}">Вход</a></li>
+                        <li><a class="me-3 py-2 link-body-emphasis text-decoration-none"
+                               href="{% url 'users:register' %}">Регистрация</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

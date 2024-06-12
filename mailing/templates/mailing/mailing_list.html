@@ -16,11 +16,11 @@
                     <ul class="list-unstyled mt-3 mb-4">
                         <li>{{ mailing.periodicity }}</li>
                     </ul>
-                    <a href="{% url 'mailing_detail' mailing.pk %}" type="button"
+                    <a href="{% url 'mailing:mailing_detail' mailing.pk %}" type="button"
                        class="btn btn-lg btn-block btn-outline-primary">Подробно</a>
-                    <a href="{% url 'mailing_update' mailing.pk %}" type="button"
+                    <a href="{% url 'mailing:mailing_update' mailing.pk %}" type="button"
                        class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
-                    <a href="{% url 'mailing_delete' mailing.pk %}" type="button"
+                    <a href="{% url 'mailing:mailing_delete' mailing.pk %}" type="button"
                        class="btn btn-lg btn-block btn-outline-danger">Удалить</a>
                 </div>
             </div>

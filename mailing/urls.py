@@ -7,6 +7,8 @@ from mailing.views import MailingListView, MailingDetailView, MailingCreateView,
     ClientListView, ClientCreateView, ClientUpdateView, MessageListView, MessageCreateView, MessageUpdateView, \
     LogListView
 
+app_name = MailingConfig.name
+
 urlpatterns = [  # стартовая страница
     path('', MailingListView.as_view(), name='mailing_list'),
     # рассылки

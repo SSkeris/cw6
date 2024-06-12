@@ -15,7 +15,7 @@ class ClientCreateView(CreateView):
     fields = ('FIO', 'email', 'description')
 
     def get_success_url(self):
-        return reverse('clients_list')
+        return reverse('mailing:clients_list')
 
 
 class ClientUpdateView(UpdateView):
@@ -24,7 +24,7 @@ class ClientUpdateView(UpdateView):
     fields = ('FIO', 'email', 'description')
 
     def get_success_url(self):
-        return reverse('clients_list')
+        return reverse('mailing:clients_list')
 
 
 class MailingListView(ListView):
@@ -41,24 +41,24 @@ class MailingCreateView(CreateView):
     """Класс для создания рассылки"""
     model = Mailing
     fields = ('name', 'description', 'periodicity', 'start_date', 'end_date', 'clients')
-    success_url = reverse_lazy('mailing_list')
+    success_url = reverse_lazy('mailing:mailing_list')
 
 
 class MailingUpdateView(UpdateView):
     """Класс для редактирования рассылки"""
     model = Mailing
     fields = '__all__'
-    success_url = reverse_lazy('mailing_detail')
+    success_url = reverse_lazy('mailing:mailing_detail')
 
     def get_success_url(self):
         """Перенаправляет на страницу с рассылкой"""
-        return reverse('mailing_detail', args=[self.object.pk])
+        return reverse('mailing:mailing_detail', args=[self.object.pk])
 
 
 class MailingDeleteView(DeleteView):
     """Класс для удаления рассылки"""
     model = Mailing
-    success_url = reverse_lazy('mailing_list')
+    success_url = reverse_lazy('mailing:mailing_list')
 
 
 class MessageListView(ListView):
@@ -72,7 +72,7 @@ class MessageCreateView(CreateView):
     fields = ('title', 'text', 'mailing_list')
 
     def get_success_url(self):
-        return reverse('message_list')
+        return reverse('mailing:message_list')
 
 
 class MessageUpdateView(UpdateView):
@@ -81,7 +81,7 @@ class MessageUpdateView(UpdateView):
     fields = ('title', 'text', 'mailing_list')
 
     def get_success_url(self):
-        return reverse('message_list')
+        return reverse('mailing:message_list')
 
 
 class LogListView(ListView):

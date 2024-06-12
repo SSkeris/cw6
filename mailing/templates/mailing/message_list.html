@@ -22,7 +22,7 @@
                         <tr>
                             <td><h4>{{ object.title }}</h4></td>
                             <td><h4><a class="btn btn-lg btn-warning"
-                                   href="{% url 'message_update' object.pk %}">Подробно</a></h4></td>
+                                   href="{% url 'mailing:message_update' object.pk %}">Подробно</a></h4></td>
                             {% endfor %}
                         </tr>
                     </table>
