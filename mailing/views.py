@@ -125,7 +125,7 @@ class MailingUpdateView(LoginRequiredMixin, UpdateView):
     """Класс для редактирования рассылки"""
     model = Mailing
     form_class = MailingForm
-    success_url = reverse_lazy('mailing:mailing_detail')
+    success_url = reverse_lazy('mailing:mailing_list')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -215,6 +215,18 @@ class MessageDeleteView(LoginRequiredMixin, DeleteView):
         self.object = super().get_object(queryset)
         user = self.request.user
         if not user.is_superuser and user != self.object.owner:
+            raise PermissionDenied
+        else:
+            return self.object
+
+
+class MessageDetailView(LoginRequiredMixin, DetailView):
+    model = Message
+
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        user = self.request.user
+        if not user.is_superuser and not user.groups.filter(name='manager') and user != self.object.owner:
             raise PermissionDenied
         else:
             return self.object

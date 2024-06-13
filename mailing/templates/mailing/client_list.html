@@ -19,6 +19,7 @@
                             <th><h4>email клиента</h4></th>
 
                             <th><h4>Редактировать</h4></th>
+                            <th><h4>Удаление</h4></th>
                         </tr>
                         {% for object in object_list %}
                         <tr>
@@ -27,6 +28,8 @@
 
                             <td><h4><a class="btn btn-lg btn-warning"
                                    href="{% url 'mailing:client_update' object.pk %}">Профиль</a></h4></td>
+                            <td><h4><a class="btn btn-lg btn-warning"
+                                   href="{% url 'mailing:client_delete' object.pk %}">Удалить</a></h4></td>
                             {% endfor %}
                         </tr>
                     </table>
