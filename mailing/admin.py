@@ -13,14 +13,14 @@ class ClientAdmin(admin.ModelAdmin):
 @admin.register(Mailing)
 class MailingAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'description', 'status', 'periodicity', 'start_date', 'end_date',)
-    list_filter = ('name', 'status', 'periodicity', 'clients', 'start_date', 'end_date',)
+    list_filter = ('name', 'status', 'periodicity',)
     search_fields = ('name', 'description',)
 
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title', 'text', 'mailing_list',)
-    list_filter = ('title', 'mailing_list',)
+    list_display = ('pk', 'title', 'text', 'owner',)
+    list_filter = ('title',)
 
 
 @admin.register(Log)
