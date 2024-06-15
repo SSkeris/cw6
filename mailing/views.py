@@ -4,7 +4,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from mailing.forms import ClientForm, MailingForm, ModeratorMailingForm, MessageForm
-from mailing.models import Mailing, Client, Log, Message
+from mailing.models import Mailing, Client, Message, MailingAttempts
 
 
 class ClientListView(LoginRequiredMixin, ListView):
@@ -232,15 +232,11 @@ class MessageDetailView(LoginRequiredMixin, DetailView):
             return self.object
 
 
-class LogListView(ListView):
-    """Класс для отображения списка логов"""
-    model = Log
+class AttemptsListView(LoginRequiredMixin, ListView):
+    model = MailingAttempts
+    template_name = 'mailing/attempts_list.html'
 
-    def get_context_data(self, *args, **kwargs):
-        context_data = super().get_context_data(*args, **kwargs)
 
-        context_data['all'] = context_data['object_list'].count()
-        context_data['success'] = context_data['object_list'].filter(status=True).count()
-        context_data['error'] = context_data['object_list'].filter(status=False).count()
-
-        return context_data
+class AttemptsDetailView(LoginRequiredMixin, DetailView):
+    model = MailingAttempts
+    template_name = 'mailing/attempts_detail.html'

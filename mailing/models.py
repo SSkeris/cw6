@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from users.models import User
 
@@ -41,13 +42,11 @@ class Message(models.Model):
 
 class Mailing(models.Model):
     """Рассылка и её параметры"""
-    FIVE_MINUTES = "Каждые пять минут"
     DAILY = "Раз в день"
     WEEKLY = "Раз в неделю"
     MONTHLY = "Раз в месяц"
 
     PERIODICITY_CHOICES = [
-        (FIVE_MINUTES, "Каждые пять минут"),
         (DAILY, "Раз в день"),
         (WEEKLY, "Раз в неделю"),
         (MONTHLY, "Раз в месяц"),
@@ -58,9 +57,9 @@ class Mailing(models.Model):
     COMPLETED = 'Завершена'
 
     STATUS_CHOICES = [
-        (COMPLETED, "Завершена"),
-        (CREATED, "Создана"),
-        (STARTED, "Запущена"),
+        ("COMPLETED", "Завершена"),
+        ("CREATED", "Создана"),
+        ("STARTED", "Запущена"),
     ]
 
     name = models.CharField(max_length=150, verbose_name='Название')
@@ -74,6 +73,8 @@ class Mailing(models.Model):
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='сообщение', **NULLABLE)
 
     clients = models.ManyToManyField(Client, verbose_name='Клиенты для рассылки')
+
+    next_send_time = models.DateTimeField(default=timezone.now, **NULLABLE)
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='пользователь', **NULLABLE)
 
@@ -90,18 +91,22 @@ class Mailing(models.Model):
         ]
 
 
-class Log(models.Model):
-    """Лог рассылки"""
-    time = models.DateTimeField(verbose_name='Дата и время попытки отправки', auto_now_add=True)
-    status = models.BooleanField(verbose_name='Статус попытки отправки')
-    server_response = models.CharField(max_length=150, verbose_name='Ответ сервера почтового сервиса', **NULLABLE)
+class MailingAttempts(models.Model):
+    SUCCESS = 'successful'
+    FAIL = 'failed'
+    STATUS_VARIANTS = [
+        (SUCCESS, 'успешно'),
+        (FAIL, 'неуспешно'),
+    ]
 
-    mailing_list = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='Рассылка')
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name='Клиент')
+    last_attempt_time = models.DateTimeField(default=timezone.now, **NULLABLE, verbose_name='последняя попытка')
+    status = models.CharField(max_length=50, choices=STATUS_VARIANTS, verbose_name='статус рассылки')
+    server_response = models.CharField(max_length=150, verbose_name='ответ почтового сервера')
+    mailing = models.ForeignKey(Mailing, on_delete=models.CASCADE, verbose_name='рассылка')
 
     def __str__(self):
-        return f'{self.client} {self.mailing_list} {self.time} {self.status} {self.server_response}'
+        return self.status
 
     class Meta:
-        verbose_name = 'лог рассылки'
-        verbose_name_plural = 'логи рассылок'
+        verbose_name = 'попытка рассылки'
+        verbose_name_plural = 'попытки рассылки'
