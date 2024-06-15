@@ -11,8 +11,8 @@ from django_apscheduler import util
 from mailing.models import Mailing, MailingAttempts
 from mailing.services import start_scheduler, send_mailing
 
-mailings = Mailing.objects.all()  # filter(status='STARTED')
-print(mailings)
+# mailings = Mailing.objects.filter(status=Mailing.STARTED)
+# print(mailings)
 
 
 @util.close_old_connections
@@ -27,7 +27,7 @@ class Command(BaseCommand):
 
         zone = pytz.timezone(settings.TIME_ZONE)
         current_datetime = datetime.now(zone)
-        mailings = Mailing.objects.all()
+        mailings = Mailing.objects.filter(status=Mailing.STARTED)
         print(mailings)
         print(f'Количество рассылок для отправки в ручную командой do_mail: {mailings.count()}')
 
